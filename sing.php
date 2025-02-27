@@ -5,19 +5,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Hash password for security
+    $password = $_POST['password'];// Hash password for security
     
-    $sql = "INSERT INTO registration_user (name, email, phone, address, password) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $name, $email, $phone, $address, $password);
+    $sql = "INSERT INTO registration_user (name, email, phone, address, password) VALUES ()";
     
-    if ($stmt->execute()) {
-        echo "Registration successful!";
-    } else {
-        echo "Error: " . $stmt->error;
+    if(mysqli_query($conn,$sql))
+    {
+        echo" Regrestration successfully";
     }
-    
-    $stmt->close();
+    else
+    {
+        echo "erro";
+    }
 }
 
 $conn->close();
