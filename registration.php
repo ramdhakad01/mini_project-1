@@ -2,7 +2,7 @@
 include("confige.php");
 if (isset($_POST['submit']))
  {
-    $name = $_POST['username'];
+    $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
