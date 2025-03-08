@@ -20,7 +20,7 @@ body {
 
 .container {
 	background-color: #003a5a4a;
-	border: 2px solid #002f64;
+	border: 2px solid #8d2fc7;
 	border-radius: 10px;
 	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 	display: flex;
@@ -60,7 +60,7 @@ body {
 	font-family: "Poppins", sans-serif;
 	width: 100%;
 	padding: 0.75rem;
-	border: 1px solid #2b72ffab;
+	border: 1px solid #501cc8ab;
 	border-radius: 0.5rem;
 	font-size: 1rem;
 	transition: border-color 0.2s;

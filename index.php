@@ -1,7 +1,14 @@
+<?php
+session_start(); // Start the session
 
+// Check if session exists (user is logged in)
+if (!isset($_SESSION['email'])) {
+    header("Location: sing.html"); // Redirect to login page if not logged in
+    exit();
+}
+?>
 
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -10,13 +17,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Best Jal wala.com</title>
   <link rel="stylesheet" href="index.css" />
-  <!-- Unicons CSS -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
   <script src="index.js" defer></script>
   <link rel="stylesheet" href="tanker2.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- <link rel="stylesheet" href="slider.css">
-  <script src="slider.js"></script> -->
 </head>
 
 <body class="background-overlay">
@@ -29,12 +33,12 @@
 
     <ul class="nav-links">
       <i class="uil uil-times navCloseBtn"></i>
-      <li><a class="ico" href="index.html">Home</a></li>
+      <li><a class="ico" href="index.php">Home</a></li>
       <li><a class="ico" href="tanker2.html">Water Bottle</a></li>
       <li><a class="ico" href="aqua.html">Water Camper</a></li>
       <li><a class="ico" href="aqua.html">Water Tanker</a></li>
       <li><a class="ico" href="#">About Us</a></li>
-      <li><a class="ico" href="feedback.html">Feedback</a></li>
+      <li><a class="ico" href="feedback.php">Feedback</a></li>
       <li><a class="ico" href="sing.html">Login </a></li>
       <li><a class="ico" href="sing.html">Register</a></li>
     </ul>
@@ -81,7 +85,7 @@
     <button class="prev-btn" aria-label="Previous slide">&lt;</button>
     <button class="next-btn" aria-label="Next slide">&gt;</button>
     <div class="dots"></div>
-</div>
+  </div>
 
   <!--  service section  -->
   <div>
@@ -106,9 +110,9 @@
       </div>
     </section>
   </div>
-  <footer>
 
-    <!-- footer -->
+  <!-- footer -->
+  <footer>
     <div class="footer-content">
       <div class="social-icons">
         <a href="#" class="icon"><i class="fab fa-facebook"></i></a>

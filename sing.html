@@ -104,7 +104,7 @@
                 <input type="email" placeholder="Email" name="email" required />
                 <input type="password" placeholder="Password" name="password" required />
                 <a href="#">Forgot your password?</a>
-                <button type="submit" name="submit">Sign In</button>
+                <button type="submit" name="login">Sign In</button>
             </form>
         </div>
 
@@ -117,7 +117,7 @@
                     <button class="ghost" id="signIn">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Hello, Friend!</h1>
+                    <h1>Create you account </h1>
                     <p>Enter your personal details and start your journey with us</p>
                     <button class="ghost" id="signUp">Sign Up</button>
                 </div>
@@ -142,3 +142,41 @@
 </script>
 
 </html>
+<!-- 
+<?php
+include("confige.php");
+if(isset($_POST['login']))
+{
+    $username = $_POST['email'];
+    $pwd = $_POST['password'];
+    $userprofile = $_SESSION['email'];
+    if($userprofile == true)
+    {
+    }
+    else
+    {
+        header('location:sing.html');
+    }
+    $query ="SELECT * FROM registration_user WHERE email='$username' AND password='$pwd'";
+    $data= mysqli_query($conn,$query);
+    
+     $total=mysqli_num_rows($data);
+    // echo$total;
+  if($total==1)
+  {  $_SESSION['email']=$username;
+    echo"<script>
+                    alert('Login Succesfully!');
+                    window.location.href = 'index.html'; // Redirect to login page
+                  </script>";
+   
+    
+  }
+  else
+  {
+    echo "<script>
+                    alert('Invalid Username or Password!');
+                    window.location.href = 'sing.html'; // Redirect to login page
+                  </script>";
+  }
+}
+?>  -->

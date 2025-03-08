@@ -1,53 +1,35 @@
 
 <?php
+session_start(); // Start the session
 include("confige.php");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
+if(isset($_POST['login'])) {
+    $username = mysqli_real_escape_string($conn, $_POST['email']);
+    $pwd = mysqli_real_escape_string($conn, $_POST['password']);
 
-    // Check if fields are empty
-    if (empty($email) || empty($password)) {
-        echo "<script>alert('Email and Password are required!'); window.location.href='index.html';</script>";
-        exit();
-    }
+    // Query to check if the user exists
+    $query = "SELECT * FROM registration_user WHERE email='$username' AND password='$pwd'";
+    $data = mysqli_query($conn, $query);
+    $total = mysqli_num_rows($data);
 
-    // Validate email format
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "<script>alert('Invalid email format!'); window.location.href='index.html';</script>";
-        exit();
-    }
-
-    // Check user in the database
-    $sql = "SELECT id, password FROM registration_user WHERE email = ?";
-    $stmt = mysqli_prepare($conn, $sql);
-
-    if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "s", $email);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_store_result($stmt);
-
-        if (mysqli_stmt_num_rows($stmt) > 0) {
-            mysqli_stmt_bind_result($stmt, $id, $hashed_password);
-            mysqli_stmt_fetch($stmt);
-
-            // Verify the password
-            if (password_verify($password, $hashed_password)) {
-                session_start();
-                $_SESSION['user_id'] = $id;
-                echo "<script>alert('Login Successful!'); window.location.href='dashboard.php';</script>";
-            } else {
-                echo "<script>alert('Incorrect Password!'); window.location.href='index.html';</script>";
-            }
-        } else {
-            echo "<script>alert('User not found! Please register first.'); window.location.href='index.html';</script>";
-        }
-
-        mysqli_stmt_close($stmt);
+    if($total == 1) {
+        $_SESSION['email'] = $username; // Set session
+        echo "<script>
+                alert('Login Successfully!');
+                window.location.href = 'index.php'; // Redirect to homepage
+              </script>";
     } else {
-        echo "<script>alert('Database error: " . mysqli_error($conn) . "');</script>";
+        echo "<script>
+                alert('Invalid Username or Password!');
+                window.location.href = 'sing.html'; // Redirect to login page
+              </script>";
     }
 }
 
-mysqli_close($conn);
+// Check if session exists
+if (!isset($_SESSION['email'])) {
+    header("Location: sing.html");
+    exit();
+}
 ?>
+

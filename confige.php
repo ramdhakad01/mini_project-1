@@ -10,6 +10,6 @@
   }
   else
   {
-    echo " connection is successfully";
+   // echo " connection is successfully";
   }
   ?>
